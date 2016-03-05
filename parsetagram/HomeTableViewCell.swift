@@ -41,6 +41,14 @@ class HomeTableViewCell: UITableViewCell {
             photoImageView.image = userPost.image
             print("This is the image that is to be set: \(userPost.image)")
             captionLabel.text = userPost.caption
+            handleLabel.text = userPost.author?.username
+            handle2Label.text = userPost.author?.username
+            
+            print("")
+            print("the user is: ")
+            print(userPost.author?.username)
+            print("")
+
         }
     }
 

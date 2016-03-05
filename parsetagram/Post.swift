@@ -95,6 +95,7 @@ class Post: NSObject {
         return newImage
     }
     
+    
     /**
      Method to post user media to Parse by uploading image file
      
