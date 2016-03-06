@@ -65,6 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.object = object
             
         }
+        
         return cell
         
     }
