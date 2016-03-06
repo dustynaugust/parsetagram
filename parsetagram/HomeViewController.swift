@@ -20,6 +20,48 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         
+      
+        
+        tableView.reloadData()
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let userPosts = userPosts {
+            return userPosts.count
+        }
+        else {
+            return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell", forIndexPath: indexPath) as! HomeTableViewCell
+        cell.selectionStyle = .None
+        
+        if (userPosts != nil) {
+            let userPost = userPosts![indexPath.row]
+            cell.postsObject = userPost
+        }
+        
+        return cell
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        userPosts = getPosts()
+        self.tableView.reloadData()
+    }
+    
+    func getPosts() -> [PFObject]? {
+        var posts: [PFObject]?
         // construct PFQuery and get data from Parse
         let query = PFQuery(className: "Post")
         query.orderByDescending("createdAt")
@@ -36,44 +78,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("ERROR: unable to get photos from parse")
             }
         }
-        
-        tableView.reloadData()
-        // Do any additional setup after loading the view.
+        return posts
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if let tweets = self.tweets {
-//            return tweets.count;
-//        }
-        return userPosts?.count ?? 0
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell", forIndexPath: indexPath) as! HomeTableViewCell
-        cell.selectionStyle = .None
-        
-        if (userPosts != nil) {
-            let object = userPosts![indexPath.row]
-            
-            cell.object = object
-            
-        }
-        
-        return cell
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-            self.viewDidLoad()
-    }
-    
     
     /*
     // MARK: - Navigation

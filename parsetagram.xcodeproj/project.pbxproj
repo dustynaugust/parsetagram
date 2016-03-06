@@ -10,6 +10,7 @@
 		0992A31CA599F45833DD28C0 /* Pods_parsetagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97E5EEB0BAAE7A57E71A3B9 /* Pods_parsetagram.framework */; };
 		3E3F54921C890BA4009E39E5 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F54911C890BA4009E39E5 /* HomeTableViewCell.swift */; };
 		3E3F54941C8917D1009E39E5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F54931C8917D1009E39E5 /* Post.swift */; };
+		3E57A4991C8BAFA8004546CD /* UserPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E57A4981C8BAFA8004546CD /* UserPost.swift */; };
 		3E6A09641C878EB700D5823E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A09631C878EB700D5823E /* LoginViewController.swift */; };
 		3E6A09671C87A02200D5823E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A09661C87A02200D5823E /* HomeViewController.swift */; };
 		3E6A09691C87A03300D5823E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A09681C87A03300D5823E /* CameraViewController.swift */; };
@@ -25,6 +26,7 @@
 		27ACB0DEC5EFDD67F421ADB6 /* Pods-parsetagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parsetagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parsetagram/Pods-parsetagram.debug.xcconfig"; sourceTree = "<group>"; };
 		3E3F54911C890BA4009E39E5 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		3E3F54931C8917D1009E39E5 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		3E57A4981C8BAFA8004546CD /* UserPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPost.swift; sourceTree = "<group>"; };
 		3E6A09631C878EB700D5823E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3E6A09661C87A02200D5823E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3E6A09681C87A03300D5823E /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -73,15 +75,9 @@
 			isa = PBXGroup;
 			children = (
 				3E3F54931C8917D1009E39E5 /* Post.swift */,
+				3E57A4981C8BAFA8004546CD /* UserPost.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		3E57A4971C8A769B004546CD /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 		3E6A09651C878EC300D5823E /* View Controllers */ = {
@@ -117,7 +113,6 @@
 		3E6EBA111C86A37C004EC8C6 /* parsetagram */ = {
 			isa = PBXGroup;
 			children = (
-				3E57A4971C8A769B004546CD /* New Group */,
 				3E57A4961C892786004546CD /* Models */,
 				3E3F54901C890B77009E39E5 /* Views */,
 				3E6A09651C878EC300D5823E /* View Controllers */,
@@ -265,6 +260,7 @@
 				3E3F54921C890BA4009E39E5 /* HomeTableViewCell.swift in Sources */,
 				3E3F54941C8917D1009E39E5 /* Post.swift in Sources */,
 				3E6A09691C87A03300D5823E /* CameraViewController.swift in Sources */,
+				3E57A4991C8BAFA8004546CD /* UserPost.swift in Sources */,
 				3E6EBA131C86A37C004EC8C6 /* AppDelegate.swift in Sources */,
 				3E6A096D1C87A5D300D5823E /* TabBarViewController.swift in Sources */,
 				3E6A09671C87A02200D5823E /* HomeViewController.swift in Sources */,

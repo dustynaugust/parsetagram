@@ -136,9 +136,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="518.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rak-ze-LyU">
-                                                    <rect key="frame" x="0.0" y="46" width="375" height="375"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user_name666" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpT-Xm-9Kc">
                                                     <rect key="frame" x="46" y="12" width="114" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -175,6 +172,9 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AbJ-qW-euy">
+                                                    <rect key="frame" x="0.0" y="46" width="375" height="375"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -183,7 +183,7 @@
                                             <outlet property="handle2Label" destination="Jlx-j4-TmU" id="Nv9-T9-UJq"/>
                                             <outlet property="handleLabel" destination="bpT-Xm-9Kc" id="qnf-jr-KAp"/>
                                             <outlet property="likeImageView" destination="aLN-4i-ZbG" id="q5N-jt-YxV"/>
-                                            <outlet property="photoImageView" destination="rak-ze-LyU" id="n8t-72-do5"/>
+                                            <outlet property="photoImageView" destination="AbJ-qW-euy" id="dIj-kA-VRG"/>
                                             <outlet property="profilePictureImageView" destination="Av5-o7-GYM" id="rOB-mN-wxv"/>
                                             <outlet property="sentToImageView" destination="x5F-GK-cWm" id="yP8-zC-dcP"/>
                                             <outlet property="timeLabel" destination="aKD-Ka-fD3" id="yJQ-vW-ocp"/>

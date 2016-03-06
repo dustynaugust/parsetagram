@@ -15,40 +15,47 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var likeImageView: UIImageView!
     @IBOutlet weak var commentImageView: UIImageView!
     @IBOutlet weak var sentToImageView: UIImageView!
     @IBOutlet weak var handle2Label: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     
+    @IBOutlet weak var photoImageView: UIImageView!
+    
+    let captionCheck  = "Enter caption..."
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    var object: PFObject? {
+    var postsObject: PFObject? {
         didSet {
-            userPost = Post(object: object!)
+            userPost = UserPost(postObject: postsObject!)
             userPost.cell = self;
         }
     }
     
-    var userPost: Post! {
+    var userPost: UserPost! {
         didSet {
-            print("did set caption and image?")
-            photoImageView.image = userPost.image
-            print("This is the image that is to be set: \(userPost.image)")
-            captionLabel.text = userPost.caption
+            photoImageView.image = userPost.photo
+            print("This is the image that is to be set: \(userPost.photo))")
+            // this causes the nil crash!! so userPost.photo must be nil...
+//            print("This is the image that is to be set: \((userPost.photo)!)")
+
+            
+            if userPost.caption == captionCheck {
+                captionLabel.text = ""
+            } else {
+                captionLabel.text = userPost.caption
+            }
+            print("the caption is: \((captionLabel.text)!)")
+            
             handleLabel.text = userPost.author?.username
             handle2Label.text = userPost.author?.username
-            
+            print("the user is: \((handleLabel.text)!)")
             print("")
-            print("the user is: ")
-            print(userPost.author?.username)
-            print("")
-
         }
     }
 
