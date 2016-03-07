@@ -20,7 +20,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var sentToImageView: UIImageView!
     @IBOutlet weak var handle2Label: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
-    
     @IBOutlet weak var photoImageView: UIImageView!
     
     let captionCheck  = "Enter caption..."
@@ -40,7 +39,7 @@ class HomeTableViewCell: UITableViewCell {
     var userPost: UserPost! {
         didSet {
             photoImageView.image = userPost.photo
-            print("This is the image that is to be set: \(userPost.photo))")
+            print("This is the image that is to be set: \(userPost.photo)")
             // this causes the nil crash!! so userPost.photo must be nil...
 //            print("This is the image that is to be set: \((userPost.photo)!)")
 

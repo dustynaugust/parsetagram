@@ -56,12 +56,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(animated: Bool) {
-        userPosts = getPosts()
+        getPosts()
         self.tableView.reloadData()
     }
     
-    func getPosts() -> [PFObject]? {
-        var posts: [PFObject]?
+    func getPosts() {
         // construct PFQuery and get data from Parse
         let query = PFQuery(className: "Post")
         query.orderByDescending("createdAt")
@@ -78,7 +77,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("ERROR: unable to get photos from parse")
             }
         }
-        return posts
     }
     
     /*

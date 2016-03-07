@@ -61,7 +61,8 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
 
     
     @IBAction func onPhotoLibrarybutton(sender: AnyObject) {
-        imgPickControl.delegate = self
+//        imgPickControl.delegate = self
+        
         imgPickControl.allowsEditing = true
         imgPickControl.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(imgPickControl, animated: true, completion: nil)
@@ -71,7 +72,6 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
      @IBAction func onSubmitButton(sender: AnyObject) {
         
         let newImage = Post.resize(image, newSize: CGSize(width: 300, height: 500))
-        
         Post.postUserImage(newImage, withCaption: captionTextView.text) { (success: Bool, error: NSError?) -> Void in
             if success {
                 self.photoImageView.image = nil

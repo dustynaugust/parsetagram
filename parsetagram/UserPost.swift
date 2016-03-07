@@ -21,28 +21,30 @@ class UserPost: NSObject {
     var cell: HomeTableViewCell?
     
     init(postObject: PFObject) {
+        
         super.init()
-        cell = HomeTableViewCell()
-        print("This is it \(postObject)")
-        caption = postObject["caption"] as? String
-        author = postObject["author"] as! PFUser?
-
-        likesCount = postObject["likesCount"] as? Int
-        commentsCount = postObject["commentsCount"] as? Int
-        name = postObject["name"] as? String
+        
+        let newPostObject = postObject
+        
+        caption = newPostObject["caption"] as? String
+        author = newPostObject["author"] as! PFUser?
+        likesCount = newPostObject["likesCount"] as? Int
+        commentsCount = newPostObject["commentsCount"] as? Int
+        name = newPostObject["name"] as? String
         
         if let newPhoto = postObject.valueForKey("media")! as? PFFile {
-            newPhoto.getDataInBackgroundWithBlock({
-                (imageData: NSData?, error: NSError?) -> Void in
+            
+            newPhoto.getDataInBackgroundWithBlock({(imageData: NSData?, error: NSError?) -> Void in
                 if (error == nil) {
                     let image = UIImage(data: imageData!)
-                    
                     self.photo = image
-                    
-//                    self.cell!.photoImageView.image = image
-//                    self.photo = image
-//                    
                     self.cell?.userPost = self
+
+                    print("")
+                    print("UserPost photo is: \(self.photo)" )
+                    print("UserPost image is: \(image)")
+                    print("")
+                    
                 } else {
                     print("ERROR: could not get image \(error?.localizedDescription)")
                 }
