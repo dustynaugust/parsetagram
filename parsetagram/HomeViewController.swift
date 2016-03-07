@@ -50,9 +50,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let userPost = userPosts![indexPath.row]
             cell.postsObject = userPost
         }
-        
         return cell
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -70,7 +68,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // fetch data asynchronously
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) -> Void in
             if let posts = posts {
-                // print(posts)
+
                 self.userPosts = posts
                 self.tableView.reloadData()
             } else {

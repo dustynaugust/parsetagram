@@ -31,28 +31,28 @@ class HomeTableViewCell: UITableViewCell {
     
     var postsObject: PFObject? {
         didSet {
-            userPost = UserPost(postObject: postsObject!)
-            userPost.cell = self;
+            post = Post(postObject: postsObject!)
+            post.cell = self;
         }
     }
     
-    var userPost: UserPost! {
+    var post: Post! {
         didSet {
-            photoImageView.image = userPost.photo
-            print("This is the image that is to be set: \(userPost.photo)")
+            photoImageView.image = post.photo
+            print("This is the image that is to be set: \(post.photo)")
             // this causes the nil crash!! so userPost.photo must be nil...
-//            print("This is the image that is to be set: \((userPost.photo)!)")
+            print("This is the image that is to be set: \((post.photo)!)")
 
             
-            if userPost.caption == captionCheck {
+            if post.caption == captionCheck {
                 captionLabel.text = ""
             } else {
-                captionLabel.text = userPost.caption
+                captionLabel.text = post.caption
             }
             print("the caption is: \((captionLabel.text)!)")
             
-            handleLabel.text = userPost.author?.username
-            handle2Label.text = userPost.author?.username
+            handleLabel.text = post.author?.username
+            handle2Label.text = post.author?.username
             print("the user is: \((handleLabel.text)!)")
             print("")
         }
