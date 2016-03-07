@@ -41,7 +41,7 @@ class HomeTableViewCell: UITableViewCell {
             photoImageView.image = post.photo
             print("This is the image that is to be set: \(post.photo)")
             // this causes the nil crash!! so userPost.photo must be nil...
-            print("This is the image that is to be set: \((post.photo)!)")
+//            print("This is the image thatx is to be set: \((post.photo)!)")
 
             
             if post.caption == captionCheck {

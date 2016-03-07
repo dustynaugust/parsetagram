@@ -33,11 +33,14 @@ class Post: NSObject {
         commentsCount = newPostObject["commentsCount"] as? Int
         name = newPostObject["name"] as? String
         
+        
         if let newPhoto = postObject.valueForKey("media")! as? PFFile {
             
             newPhoto.getDataInBackgroundWithBlock({(imageData: NSData?, error: NSError?) -> Void in
                 if (error == nil) {
                     let image = UIImage(data: imageData!)
+                    
+                    print(image)
                     self.photo = image
                     self.cell?.post = self
                     
@@ -109,6 +112,8 @@ class Post: NSObject {
                 return PFFile(name: "image.png", data: imageData)
             }
         }
+        print("mofo pic is nil")
+
         return nil
     }
 }
