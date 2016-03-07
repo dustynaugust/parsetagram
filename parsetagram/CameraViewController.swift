@@ -18,7 +18,7 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
     
     
     let imgPickControl = UIImagePickerController()
-    var image = UIImage()
+    var image: UIImage!
 
 
     
@@ -46,7 +46,8 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
             let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
             
             // Do something with the images (based on your use case)
-            photoImageView.image = editedImage
+            image = editedImage
+            photoImageView.image = image
             
             // Dismiss UIImagePickerController to go back to your original view controller
             dismissViewControllerAnimated(true, completion: nil)
