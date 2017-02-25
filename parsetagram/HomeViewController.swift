@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let userPosts = userPosts {
             return userPosts.count
         }
@@ -42,9 +42,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell", forIndexPath: indexPath) as! HomeTableViewCell
-        cell.selectionStyle = .None
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
+        cell.selectionStyle = .none
         
         if (userPosts != nil) {
             let userPost = userPosts![indexPath.row]
@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         getPosts()
         self.tableView.reloadData()
     }
@@ -61,12 +61,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func getPosts() {
         // construct PFQuery and get data from Parse
         let query = PFQuery(className: "Post")
-        query.orderByDescending("createdAt")
+        query.order(byDescending: "createdAt")
         query.includeKey("author")
         query.limit = 20
         
         // fetch data asynchronously
-        query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) -> Void in
+        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) -> Void in
             if let posts = posts {
 
                 self.userPosts = posts

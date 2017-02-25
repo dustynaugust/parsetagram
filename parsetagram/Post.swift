@@ -34,13 +34,13 @@ class Post: NSObject {
         name = newPostObject["name"] as? String
         
         
-        if let newPhoto = postObject.valueForKey("media")! as? PFFile {
+        if let newPhoto = postObject.value(forKey: "media")! as? PFFile {
             
-            newPhoto.getDataInBackgroundWithBlock({(imageData: NSData?, error: NSError?) -> Void in
+            newPhoto.getDataInBackground({(imageData: Data?, error: Error?) -> Void in
                 if (error == nil) {
                     let image = UIImage(data: imageData!)
                     
-                    print(image)
+//                    print(image)
                     self.photo = image
                     self.cell?.post = self
                     
@@ -65,35 +65,35 @@ class Post: NSObject {
      - parameter completion: Block to be executed after save operation is complete
      */
     
-    class func postUserImage(image: UIImage?, withCaption caption: String?, withCompletion completion: PFBooleanResultBlock?) {
+    class func postUserImage(_ image: UIImage?, withCaption caption: String?, withCompletion completion: PFBooleanResultBlock?) {
         // Create Parse object PFObject
         let media = PFObject(className: "Post")
         
         print("Posting user image")
         // Add relevant fields to the object
         media["media"] = getPFFileFromImage(image) // PFFile column type
-        media["author"] = PFUser.currentUser() // Pointer column type that points to PFUser
+        media["author"] = PFUser.current() // Pointer column type that points to PFUser
         media["caption"] = caption
         media["likesCount"] = 0
         media["commentsCount"] = 0
         
         
         // Save object (following function will save the object in Parse asynchronously)
-        media.saveInBackgroundWithBlock(completion)
+        media.saveInBackground(block: completion)
         print("user image save complete")
     }
     
     
-    class func resize(image: UIImage, newSize: CGSize) -> UIImage {
-        let resizeImageView = UIImageView(frame: CGRectMake(0, 0, newSize.width, newSize.height))
-        resizeImageView.contentMode = UIViewContentMode.ScaleAspectFill
+    class func resize(_ image: UIImage, newSize: CGSize) -> UIImage {
+        let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        resizeImageView.contentMode = UIViewContentMode.scaleAspectFill
         resizeImageView.image = image
         
         UIGraphicsBeginImageContext(resizeImageView.frame.size)
-        resizeImageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        resizeImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return newImage
+        return newImage!
     }
     
     
@@ -104,7 +104,7 @@ class Post: NSObject {
      
      - returns: PFFile for the the data in the image
      */
-    class func getPFFileFromImage(image: UIImage?) -> PFFile? {
+    class func getPFFileFromImage(_ image: UIImage?) -> PFFile? {
         // check if image is not nil
         if let image = image {
             // get image data and check if that is not nil

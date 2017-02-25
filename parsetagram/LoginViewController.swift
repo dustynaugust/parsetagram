@@ -27,32 +27,46 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onSignIn(sender: AnyObject) {
-        PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) { (user: PFUser?, error: NSError?) -> Void in
+    @IBAction func onSignIn(_ sender: AnyObject) {
+        PFUser.logInWithUsername(inBackground: usernameTextField.text!, password: passwordTextField.text!) { (user: PFUser?, error: Error?) -> Void in
             if user != nil {
                 print("Bruh! You logged in.")
-                self.performSegueWithIdentifier("LoginSegue", sender: nil)
+                self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+            } else {
+                let logInFailureAlert = UIAlertController(title: "Wait a minute...", message: "there was an error", preferredStyle: UIAlertControllerStyle.alert)
+                logInFailureAlert.addAction(UIAlertAction(title: "try again", style: .default) { _ in })
+                self.present(logInFailureAlert, animated: true){}
+
             }
         }
     }
     
-    @IBAction func onSignUp(sender: AnyObject) {
+    @IBAction func onSignUp(_ sender: AnyObject) {
         let newUser = PFUser()
         
         newUser.username = usernameTextField.text
         newUser.password = passwordTextField.text
         
-        newUser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+        newUser.signUpInBackground { (success: Bool, error: Error?) -> Void in
             if success {
+                
+                let signUpSuccessAlert = UIAlertController(title: "Awesome!", message: "you created a user", preferredStyle: .alert)
+                signUpSuccessAlert.addAction(UIAlertAction(title: "please click sign in", style: .default) { _ in })
+                self.present(signUpSuccessAlert, animated: true){}
+                
                 print("Bruh! You created a user!")
             } else {
-                print(error?.localizedDescription)
-                if error!.code == 202 {
-                    print("Username is taken")
+                if (error as! NSError).code == 202 {
+                    
+                    let signUpFailureAlert = UIAlertController(title: "Wait a minute...", message: "that username already exists", preferredStyle: UIAlertControllerStyle.alert)
+                    signUpFailureAlert.addAction(UIAlertAction(title: "try signing in", style: .default) { _ in })
+                    self.present(signUpFailureAlert, animated: true){}
+                    
                 }
             }
         }
     }
+    
     
     
 

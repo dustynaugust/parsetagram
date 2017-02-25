@@ -26,7 +26,7 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
         
         captionTextView.delegate = self
         captionTextView.text = "Enter caption..."
-        captionTextView.textColor = UIColor.lightGrayColor()
+        captionTextView.textColor = UIColor.lightGray
         
         imgPickControl.delegate = self
         
@@ -39,8 +39,8 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
         // Dispose of any resources that can be recreated.
     }
     
-    func imagePickerController(picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [String : Any]) {
             // Get the image captured by the UIImagePickerController
             let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
             let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
@@ -50,30 +50,30 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
             photoImageView.image = image
             
             // Dismiss UIImagePickerController to go back to your original view controller
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onCameraButton(sender: AnyObject) {
+    @IBAction func onCameraButton(_ sender: AnyObject) {
         imgPickControl.delegate = self
         imgPickControl.allowsEditing = true
-        imgPickControl.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(imgPickControl, animated: true, completion: nil)
+        imgPickControl.sourceType = UIImagePickerControllerSourceType.camera
+        self.present(imgPickControl, animated: true, completion: nil)
     }
 
     
-    @IBAction func onPhotoLibrarybutton(sender: AnyObject) {
+    @IBAction func onPhotoLibrarybutton(_ sender: AnyObject) {
 //        imgPickControl.delegate = self
         
         imgPickControl.allowsEditing = true
-        imgPickControl.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imgPickControl, animated: true, completion: nil)
+        imgPickControl.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(imgPickControl, animated: true, completion: nil)
     }
     
     
-     @IBAction func onSubmitButton(sender: AnyObject) {
+     @IBAction func onSubmitButton(_ sender: AnyObject) {
         
         let newImage = Post.resize(image, newSize: CGSize(width: 300, height: 500))
-        Post.postUserImage(newImage, withCaption: captionTextView.text) { (success: Bool, error: NSError?) -> Void in
+        Post.postUserImage(newImage, withCaption: captionTextView.text) { (success: Bool, error: Error?) -> Void in
             if success {
                 self.photoImageView.image = nil
                 self.captionTextView.text = nil
@@ -84,10 +84,10 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
-        if captionTextView.textColor == UIColor.lightGrayColor() {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if captionTextView.textColor == UIColor.lightGray {
             captionTextView.text = nil
-            captionTextView.textColor = UIColor.blackColor()
+            captionTextView.textColor = UIColor.black
         }
     }
     

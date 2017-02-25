@@ -13,6 +13,7 @@ class HomeTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var profilePictureImageView: UIImageView!
+    
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeImageView: UIImageView!
@@ -51,14 +52,13 @@ class HomeTableViewCell: UITableViewCell {
             }
             print("the caption is: \((captionLabel.text)!)")
             
-            handleLabel.text = post.author?.username
-            handle2Label.text = post.author?.username
+            handleLabel.text = (post.author?.username)! as String
             print("the user is: \((handleLabel.text)!)")
             print("")
         }
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

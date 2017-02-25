@@ -22,8 +22,8 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLogout(sender: AnyObject) {
-        print("Logging out user: \(PFUser.currentUser()!.username!)")
+    @IBAction func onLogout(_ sender: AnyObject) {
+        print("Logging out user: \(PFUser.current()!.username!)")
         PFUser.logOut()
 //        NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     }
